@@ -27,3 +27,11 @@
   text-align: center;
   padding: 4em 0;
 }
+
+.chart.title {
+  position: related;
+  left: 0;
+  right: 0;
+  top: 40%;
+  margin: 0 auto;
+}
