@@ -1,12 +1,13 @@
-import React from 'react'
+import React from 'react';
 import { useForm } from 'react-hook-form';
+import List from './History';
 
 export const Form = () => {
 
   const { register, handleSubmit, resetField } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
   }
 
   return (
@@ -32,6 +33,7 @@ export const Form = () => {
           </div>
         </div>
       </form>
+      <List/>
     </div>
-  )
+  );
 }
