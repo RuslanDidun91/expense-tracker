@@ -1,4 +1,5 @@
 import React from 'react';
+import { default as api } from '../store/apiSlice'
 
 const obj = [
   { type: "Savings", color: '#f9c74f', percent: 45 },
@@ -7,6 +8,10 @@ const obj = [
 ];
 
 export const Labels = () => {
+
+  //RTKquery is adding 'use' + 'Query'
+  api.useGetCategoriesQuery()
+
   return (
     <>
       {obj.map((v, i) => <LabelComponent key={i} data={v} />)}
