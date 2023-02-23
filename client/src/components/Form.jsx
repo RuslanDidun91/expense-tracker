@@ -1,13 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import List from './History';
+import { default as api } from '../store/apiSlice';
 
 export const Form = () => {
 
   const { register, handleSubmit, resetField } = useForm();
+  const [addTransaction] = api.useAddTransactionMutation()
 
-  const onSubmit = (data) => {
-    console.log(data);
+
+  const onSubmit = async (data) => {
+    if (!data) return {};
+    await addTransaction(data).unwrap();
+    resetField('name');
+    resetField('amount')
   }
 
   return (
@@ -33,7 +39,7 @@ export const Form = () => {
           </div>
         </div>
       </form>
-      <List/>
+      <List />
     </div>
   );
 }
