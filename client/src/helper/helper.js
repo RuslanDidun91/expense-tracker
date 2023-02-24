@@ -4,7 +4,7 @@ export function getSum(transaction, type) {
   let sum = _(transaction)
     .groupBy("type")
     .map((objs, key) => {
-      if (!type) return _.sumBy(objs, 'amount'); // getting total amount
+      if (!type) return _.sumBy(objs, 'amount'); // [300, 350, 500]
       return {
         'type': key,
         'color': objs[0].color,
@@ -26,7 +26,7 @@ export function getLabels(transaction) {
   return percent;
 }
 
-export function chart_Data(transaction, custom) {
+export function chartData(transaction, custom) {
 
   let bg = _.map(transaction, a => a.color)
   bg = _.uniq(bg)

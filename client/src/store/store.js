@@ -7,6 +7,5 @@ export const store = configureStore({
     expense: expenseSlice,
     [apiSlice.reducerPath]: apiSlice.reducer
   },
-  //middleware default function
   middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSlice.middleware)
 })

@@ -43,9 +43,10 @@ async function createTransaction(req, res) {
       date: new Date()
     }
   );
+
   create.save(function (err) {
     if (!err) return res.json(create);
-    return res.status(400).json({ message: `Error while creating transaction ${err}` });
+    return res.status(400).json({ message: `Erro while creating transaction ${err}` });
   });
 
 }
@@ -64,13 +65,11 @@ async function deleteTransaction(req, res) {
   }).clone().catch(function (err) { res.json("Error while deleting Transaction Record") });
 }
 
-//mongoose agregate function
 //  GET: http://localhost:8000/api/labels
 async function getLabels(req, res) {
 
   model.Transaction.aggregate([
     {
-      //specification we want to join
       $lookup: {
         from: "categories",
         localField: 'type',
@@ -82,15 +81,16 @@ async function getLabels(req, res) {
       $unwind: "$categories_info"
     }
   ]).then(result => {
-    let data = result.map(v => Object.assign({}, {
-      _id: v._id,
-      name: v.name,
-      type: v.type,
-      amount: v.amount,
-      color: v.categories_info['color']
-    }));
+    let data = result.map(v => Object.assign({},
+      {
+        _id: v._id,
+        name: v.name,
+        type: v.type,
+        amount: v.amount,
+        color: v.categories_info['color']
+      }));
     res.json(data);
   }).catch(error => {
     res.status(400).json("Looup Collection Error");
-  });
+  })
 }

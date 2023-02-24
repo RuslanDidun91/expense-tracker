@@ -1,21 +1,21 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-require('dotenv').config({path: '../.env'})
 
+require('dotenv').config({ path: '../.env' })
 const port = process.env.PORT || 5000;
 
-//middleware 
+// use middleware
 app.use(cors());
 app.use(express.json());
 
-//mongo connection
-const connection = require('./db/connection');
+// mongodb connection
+const con = require('./db/connection.js');
 
-//routes
+// using routes
 app.use(require('./routes/route'));
 
-connection.then(db => {
+con.then(db => {
   if (!db) return process.exit(1);
 
   // listen to the http server 

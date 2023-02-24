@@ -6,14 +6,14 @@ const initialState = {
 }
 
 export const expenseSlice = createSlice({
-  name: 'expenses',
+  name: 'expense',
   initialState,
   reducers: {
     getTransactions: (state) => {
-
+      // get code
     }
   }
-});
+})
 
 export const { getTransactions } = expenseSlice.actions;
 export default expenseSlice.reducer;
